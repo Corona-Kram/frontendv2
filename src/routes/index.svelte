@@ -1,46 +1,54 @@
 <style>
-	h1, figure, p {
+	main {
 		text-align: center;
+		padding: 1em;
+		max-width: 240px;
 		margin: 0 auto;
 	}
 
-	h1 {
-		font-size: 2.8em;
-		text-transform: uppercase;
-		font-weight: 700;
-		margin: 0 0 0.5em 0;
+	@media (min-width: 1200px) {
+		main {
+			max-width: 240px;
+		}
 	}
 
-	figure {
-		margin: 0 0 1em 0;
+	.main_button {
+		display: block;
+		cursor: pointer;
+		margin: 10% auto 5%;
+		background-color: white;
+		border: 3px solid #555555;
+		border-radius: 8px;
+		color: black;
+		padding: 15px 32px;
+		text-align: center;
+		text-decoration: none;
+		font-size: 5vw;
+		box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	}
 
-	img {
-		width: 100%;
-		max-width: 400px;
-		margin: 0 0 1em 0;
+	.content {
+		display: grid;
+		grid-template-columns: 20% 80%;
+		grid-column-gap: 10px;
 	}
 
-	p {
-		margin: 1em auto;
+	input {
+		width: 50%;
 	}
 
-	@media (min-width: 480px) {
-		h1 {
-			font-size: 4em;
+	@media (min-width: 640px) {
+		main {
+			max-width: none;
 		}
 	}
 </style>
 
 <svelte:head>
-	<title>Sapper project template</title>
+	<title>Corona Kram</title>
 </svelte:head>
 
-<h1>Great success!</h1>
+	<div class="wrapper">
+		<button class="main_button">SEND ET KRAM</button>
+	</div>
 
-<figure>
-	<img alt='Borat' src='great-success.png'>
-	<figcaption>HIGH FIVE!</figcaption>
-</figure>
-
-<p><strong>Try editing this file (src/routes/index.svelte) to test live reloading.</strong></p>
