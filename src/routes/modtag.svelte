@@ -1,6 +1,12 @@
 
 <script>
+import { goto } from '@sapper/app';
+
 let phone = ""
+
+function handleSubmit() {
+    	goto('gemt');
+  }
 </script>
 
 <svelte:head>
@@ -9,8 +15,8 @@ let phone = ""
 
 <h1>Send et kram til mig</h1>
 		<form class="content">
-			<label>Telefon</label>
+			<label>Telefon: </label>
 			<input type="text" bind:value={phone} />
 
-			<button formaction='gemt'>Gem</button>
+			<button on:click={handleSubmit}>Gem</button>
 		</form>
