@@ -12,6 +12,9 @@
 	ul {
 		margin: 0;
 		padding: 0;
+
+		grid-template-columns: 1fr 1fr 1fr; 
+		display: flex;
 	}
 
 	/* clearfix */
@@ -23,7 +26,8 @@
 
 	li {
 		display: block;
-		float: left;
+		text-align: center;
+		flex: 1;
 	}
 
 	[aria-current] {
