@@ -1,25 +1,30 @@
 <script>
 	import { goto } from '@sapper/app';
 
-	function handleSubmit() {
-    	goto('kramSent');
-  }
+	async function handleSubmit() {
+		await goto('kramSent');
+
+		const response = await fetch("/kram/",
+			{
+				method: 'POST',
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ text: "testing" })
+			});
+	}
 </script>
 
 
 <style>
-
-	button {
-		display: block;
-		cursor: pointer;
-		margin: 10% auto 5%;
-		background-color: white;
-		border: 2px solid teal;
-		border-radius: 4px;
+	.kram-btn {
+		border-radius: 9px;
 		color: black;
-		padding: 15px 32px;
 		text-align: center;
 		text-decoration: none;
+		margin: 5% auto;
+		padding: 15px 32px;
 		font-size: 5vw;
 		box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	}
@@ -29,7 +34,8 @@
 	<title>Corona Kram</title>
 </svelte:head>
 
-	<div class="wrapper">
-		<button on:click={handleSubmit}>SEND ET KRAM</button>
-	</div>
+<div class="center-align">
+	<a class="waves-effect waves-light kram-btn red lighten-2" on:click={handleSubmit}>SEND ET KRAM</a>
+</div>
 
+<a href="/kramSent" style="display:none;"></a>

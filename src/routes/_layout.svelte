@@ -15,8 +15,8 @@
 	}
 </style>
 
-<Nav {segment}/>
-
-<main>
+<Nav {segment} />
+<br />
+<main class="container">
 	<slot></slot>
 </main>

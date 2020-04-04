@@ -1,3 +1,6 @@
+<script>
+</script>
+
 <svelte:head>
 	<title>Gemt!</title>
 </svelte:head>
