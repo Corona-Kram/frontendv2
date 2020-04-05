@@ -5,8 +5,8 @@
 	<title>Gemt!</title>
 </svelte:head>
 
-<h2>Vi har gemt dit telefon nummer</h2>
+<h2>Vi har slettet dig fra listen</h2>
 
 <p class="flow-text">
-Du vil blive tilfældigt udvalgt til at modtage beskeder.
+Du vil ikke modtage flere beskeder fra Corona Kram.
 </p>

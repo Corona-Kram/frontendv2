@@ -17,7 +17,6 @@
 
 	li.active {
 		border-bottom: 4px solid rgba(0, 0, 0, 0.1);
-		;
 	}
 
 	a {

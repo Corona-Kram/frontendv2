@@ -1,5 +1,4 @@
 <script>
-	import { goto } from '@sapper/app';
 	import Message from '../components/Message.svelte'
 
 </script>

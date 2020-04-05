@@ -17,47 +17,89 @@
 				},
 				body: JSON.stringify({ phone_number: phone })
 			}).then((response) => {
-				console.log(response.status)
-				console.log(response.states == 442)
+				console.log(response)
 				if (response.status == 442) {
-					server_error = "Telefonnummeret ser ikke rigtigt ud. Er du sikker på at telefonnummeret er dansk og har 8 cifre?"
-				} else if (response.status >= 400 && !response.status == 409) {
+					server_error = "Telefonnummeret ser ikke rigtigt ud. Er du sikker på at nummeret er dansk og har 8 cifre?"
+				} else if (response.status >= 400 && response.status != "409") {
 					server_error = "Fejl, prøv venligst igen."
 				} else {
 					goto('/gemt')
 				}
 			})
-
 	}
+
+	function handleRemove() {
+		fetch("/remove_number/",
+			{
+				method: 'POST',
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ phone_number: phone })
+			}).then((response) => {
+				if (response.status == 442) {
+					server_error = "Telefonnummeret ser ikke rigtigt ud. Er du sikker på at nummeret er dansk og har 8 cifre?"
+				} else if (response.status >= 400) {
+					server_error = "Fejl, prøv venligst igen."
+				} else {
+					goto('/slettet')
+				}
+			})
+	}
+
 </script>
 
 <svelte:head>
 	<title>Modtag kram</title>
 </svelte:head>
 
+<style>
+	.card {
+		background-color: rgba(0, 0, 0, 0.2);
+	}
+</style>
 
-<h1>Send kram til mig</h1>
+<div class="row">
+	<div class="col s12">
+		<div class="card z-depth-2 darken-1">
+			<div class="card-content white-text">
+				<span class="card-title">Skriv dig op til at modtage kram</span>
+				<p>
+					Ved at skrive dig op giver du tilsagn til at coronakram.dk må sende dig SMS'er på
+					vegne af andre. Vi videregiver <i>aldrig</i> dit nummer, og sletter det så snart servicen lukker
+					ned.
+				</p>
 
-<p>
-	Hvis du gerne vil modtage kram, skriv dit <i>telefon nummer</i> nedenfor:
-</p>
+				<div class="row center-align">
+					<br />
+					<p class="{server_error ? '' : 'hide' } col s12 red-text flow-text">{server_error}</p>
+				</div>
 
-<p class="{server_error ? '' : 'hide' } red-text">{server_error}</p>
-
-<label>Telefon</label>
-
-<div class="input-field col s-12">
-	<i class="material-icons prefix">phone</i>
-	<input type="number" pattern="[0-9]*" required placeholder="Skriv dit nummer her" bind:value={phone}
-		class="{ has_error ? 'invalid' : undefined } validate" />
-	<span class="helper-text" data-error="Forkert format; et dansk nummer er 8 cifre"></span>
+				<div class="row valign-wrapper">
+					<div class="input-field col s12">
+						<i class="material-icons prefix">phone</i>
+						<input type="number" id="phone" pattern="[0-9]*" required placeholder="Skriv dit nummer her"
+							bind:value={phone} class="{ has_error ? 'invalid' : undefined } validate" />
+					</div>
+				</div>
+				<div class="row valign-wrapper">
+					<button on:click={handleRegister}
+						class="{!phone ? 'disabled' : ''} col s10 offset-s1 waves-effect waves-light btn btn-large blue darken-2 white-text">Skriv
+						mig op</button>
+				</div>
+				<div class="row center-align">
+					eller
+				</div>
+				<div class="row valign-wrapper">
+					<button on:click={handleRemove}
+						class="{!phone ? 'disabled' : ''} col s10 offset-s1 waves-effect waves-light btn btn-large red darken-2 white-text">Fjern
+						mig fra listen</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
-<label>
-	<input type="checkbox" bind:value={consent} />
-	<span>Ved at klikke på denne boks, giver du tilsagn til at coronakram.dk må sende dig SMS'er på vegne af andre. Vi
-		videregiver <i>aldrig</i> dit nummer, og sletter det så snart servicen lukker ned.</span>
-</label>
-<button on:click={handleRegister} class="{!consent ? 'disabled' : ''} btn">Gem</button>
 
-
-<a href="/gemt" style="display:none;"></a>
+<a href="/gemt" style="display:none;"> </a>
+<a href="/slettet" style="display:none;"> </a>

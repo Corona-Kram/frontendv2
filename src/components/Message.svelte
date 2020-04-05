@@ -1,4 +1,5 @@
 <script>
+    import { goto } from '@sapper/app';
     export let extended = false;
 
     let messageDefault = 'Tak for din indsats i kampen mod Corona!';
@@ -8,27 +9,26 @@
     let name = '';
     let receiver = '';
 
-    function verifyMessage() {
+    async function verifyMessage() {
         if (message.length + name.length > 50) {
             message = message.substring(0, 50 - name.length);
         }
     }
 
-    function verifyMessageName() {
+    async function verifyMessageName() {
         if (message.length + name.length > 50) {
             name = name.substring(0, 50 - message.length)
         }
     }
 
     async function handleSubmit() {
-        await goto('kramSent');
 
         const json_message = { text: message };
         if (name) {
             json_message['name'] = name;
         }
         if (receiver) {
-            json_message['receiver'] = receiver;
+            json_message['receiver'] = "" + receiver;
         }
 
         const response = await fetch("/kram/",
@@ -38,8 +38,11 @@
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ text: "testing" })
+                body: JSON.stringify(json_message)
             });
+
+
+        goto('kramSent');
     }
 </script>
 
@@ -123,6 +126,6 @@
     </div>
 </div>
 <div class="center-align white-text">
-    <a href="/" class="waves-effect waves-light btn btn-large kram-btn blue darken-2 white-text {(extended && (name.length == 0 || receiver.length == 0)) ? 'disabled' : ''}"
+    <a href="/" class="waves-effect waves-light btn btn-large kram-btn blue darken-2 white-text {(extended && (!name || !receiver)) ? 'disabled' : ''}"
         on:click={handleSubmit}>SEND ET KRAM</a>
 </div>
