@@ -20,8 +20,6 @@
 <style>
 	.kram-btn {
 		border-radius: 9px;
-		color: rgb(79,61,224);
-		background-color: white;
 		text-align: center;
 		text-decoration: none;
 		margin: 5% auto;
@@ -36,7 +34,7 @@
 </svelte:head>
 
 <div class="center-align">
-	<a class="waves-effect waves-light kram-btn red lighten-2" on:click={handleSubmit}>SEND ET KRAM</a>
+	<a class="waves-effect waves-light kram-btn white blue-text" on:click={handleSubmit}>SEND ET KRAM</a>
 </div>
 
 <a href="/kramSent" style="display:none;"></a>
