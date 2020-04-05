@@ -2,17 +2,18 @@
 	import { onMount } from 'svelte';
 
 	let loading = true;
-	let messages = [];
+	let messages = [[1, 2, 3]];
 	let server_error = '';
 
 	async function updateMessages(seconds) {
 		loading = true;
+		setTimeout(() => loading = false, 1000);
+
 		await fetch("/kram/" + seconds).then((response) => {
-			loading = false;
 			return response.json();
 		}).then((new_messages) => {
 			messages = new_messages.concat(messages);
-		})
+		}).catch(() => { })
 	}
 
 	onMount(() => {
@@ -41,11 +42,12 @@
 	<p class="{server_error ? '' : 'hide' } col s12 red-text flow-text">{server_error}</p>
 </div>
 
-{#if messages.length == 0 || loading}
 <div class="progress">
-	<div class="indeterminate"></div>
+	<div class="{!messages || loading ? 'indeterminate' : 'determinate'}"
+		style="{messages && !loading ? 'width: 100%;' : ''}"></div>
 </div>
-{/if}
+
+<br />
 
 {#each messages as [ name, time, text ]}
 	<div class="row">

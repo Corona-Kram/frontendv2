@@ -2,22 +2,26 @@
     import { goto } from '@sapper/app';
     export let extended = false;
 
-    let messageDefault = 'Tak for din indsats i kampen mod Corona!';
+    const MAX_LENGTH = 50;
+
+    let messageDefault = 'Et kram fra mig til dig';
     let message = messageDefault;
     let messageError = undefined;
     let messageSuccess = 'right';
     let name = '';
     let receiver = '';
 
+    let emojis = ["🙂", "🥰", "🌞", "💖"]
+
     async function verifyMessage() {
-        if (message.length + name.length > 50) {
-            message = message.substring(0, 50 - name.length);
+        if (message.length + name.length > MAX_LENGTH) {
+            message = message.substring(0, MAX_LENGTH - name.length);
         }
     }
 
     async function verifyMessageName() {
-        if (message.length + name.length > 50) {
-            name = name.substring(0, 50 - message.length)
+        if (message.length + name.length > MAX_LENGTH) {
+            name = name.substring(0, MAX_LENGTH - message.length)
         }
     }
 
@@ -44,6 +48,21 @@
 
         goto('kramSent');
     }
+
+    function addEmoji(emoji) {
+        return () => {
+            if (message.length < MAX_LENGTH - 1) {
+                const last = message.substring(message.length - 1, message.length)
+                console.log(last)
+                if (last == " ") {
+                    message += emoji
+                } else {
+                    message += " " + emoji
+                }
+            }
+        }
+    }
+
 </script>
 
 
@@ -106,6 +125,10 @@
     .info {
         display: inline-block;
     }
+
+    .emoji {
+        margin: 0 0.4rem;
+    }
 </style>
 
 
@@ -149,6 +172,15 @@
         <i class="material-icons prefix white-text">mode_edit</i>
         <input placeholder="{messageDefault}" type="text" class="validate white-text" bind:value={message}
             on:input={verifyMessage}>
+            
+        <div class="valign-wrapper">
+            <div class="col s2 offset-s2">Smiley:</div>
+            <div class="col s8">
+                {#each emojis as emoji}
+                    <a class="waves-effect waves-light btn emoji col s2 blue darken-2" on:click={addEmoji(emoji)}>{emoji}</a>
+                {/each}
+            </div>
+        </div>
     </div>
     <div class="col m3">
         <span class="info">
