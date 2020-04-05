@@ -4,7 +4,7 @@
 
 <style>
 	ul {
-		width: 70%;
+		width: 100%;
 	}
 
 	li {
@@ -26,15 +26,21 @@
 	}
 </style>
 
-<nav>
+<nav class="blue">
 	<div class="nav-wrapper">
 
-		<a href="#" class="brand-logo right black-text">Corona Kram</a>
-		<ul>
+		<ul class="hide-on-small-and-down">
 			<li class='{segment === undefined ? "active" : undefined}'><a href='/'><i
 						class="material-icons left">send</i>Send Kram</a></li>
 			<li class='{segment === "modtag" ? "active" : undefined}'><a href='/modtag'>Modtag Kram</a></li>
 			<li class='{segment === "feed" ? "active" : undefined}'><a href='/feed'>Kram Live Feed</a></li>
+		</ul>
+
+		<ul class="hide-on-med-and-up">
+			<li class='{segment === undefined ? "active" : undefined}'><a href='/'><i
+						class="material-icons left">send</i>Send</a></li>
+			<li class='{segment === "modtag" ? "active" : undefined}'><a href='/modtag'>Modtag</a></li>
+			<li class='{segment === "feed" ? "active" : undefined}'><a href='/feed'>Live Feed</a></li>
 		</ul>
 	</div>
 
