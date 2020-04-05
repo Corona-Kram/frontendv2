@@ -3,7 +3,7 @@
 
 	let loading = true;
 	let messages = [[1, 2, 3]];
-	let server_error = '';
+	let count = 0;
 
 	async function updateMessages(seconds) {
 		loading = true;
@@ -13,11 +13,20 @@
 			return response.json();
 		}).then((new_messages) => {
 			messages = new_messages.concat(messages);
+			count += new_messages.length;
+		}).catch(() => { })
+	}
+
+	async function getCount() {
+		await fetch("/count/").then((response) => response.text()).then((text) => {
+			count = Number(text);
 		}).catch(() => { })
 	}
 
 	onMount(() => {
-		updateMessages(10000)
+		updateMessages(100000);
+
+		getCount();
 
 		const interval = setInterval(() => {
 			updateMessages(10)
@@ -35,12 +44,9 @@
 </svelte:head>
 
 
-<h1>Kram Live Feed!</h1>
+<h1>Kram Live Feed</h1>
 
-<div class="row center-align">
-	<br />
-	<p class="{server_error ? '' : 'hide' } col s12 red-text flow-text">{server_error}</p>
-</div>
+<p class="flow-test">{count} kram sendt indtil videre.</p>
 
 <div class="progress">
 	<div class="{!messages || loading ? 'indeterminate' : 'determinate'}"
