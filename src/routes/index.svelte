@@ -1,41 +1,47 @@
 <script>
 	import { goto } from '@sapper/app';
+	import Message from '../components/Message.svelte'
 
-	async function handleSubmit() {
-		await goto('kramSent');
-
-		const response = await fetch("/kram/",
-			{
-				method: 'POST',
-				headers: {
-					'Accept': 'application/json',
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({ text: "testing" })
-			});
-	}
 </script>
-
-
-<style>
-	.kram-btn {
-		border-radius: 9px;
-		color: black;
-		text-align: center;
-		text-decoration: none;
-		margin: 5% auto;
-		padding: 15px 32px;
-		font-size: 5vw;
-		box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	}
-</style>
 
 <svelte:head>
 	<title>Corona Kram</title>
 </svelte:head>
 
-<div class="center-align">
-	<a class="waves-effect waves-light kram-btn red lighten-2" on:click={handleSubmit}>SEND ET KRAM</a>
+<style>
+	.card {
+		background-color: rgba(0, 0, 0, 0.2);
+	}
+</style>
+
+<div class="row">
+	<div class="col s12">
+		<div class="card z-depth-2 darken-1">
+			<div class="card-content white-text">
+				<span class="card-title">Send et tilfældigt kram</span>
+				<p>Du kan sende en besked til en tilfældig person, der har tilmeldt sig på Coronakram.dk.</p>
+				<Message extended={false}></Message>
+			</div>
+		</div>
+	</div>
 </div>
 
-<a href="/kramSent" style="display:none;"></a>
+<div class="row flow-text center-align">
+	<p class="align-center">eller</p>
+</div>
+
+
+<div class="row">
+	<div class="col s12">
+		<div class="card z-depth-2 darken-1">
+			<div class="card-content white-text">
+				<span class="card-title">Send et kram til en du kender</span>
+				<p>Du kan sende en besked til en udvalgt person.</p>
+
+				<Message extended={true}></Message>
+			</div>
+		</div>
+	</div>
+</div>
+
+<a href="/kramSent" style="display:none;"> </a>

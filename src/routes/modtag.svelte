@@ -39,8 +39,7 @@
 <h1>Send kram til mig</h1>
 
 <p>
-	Hvis du gerne vil modtage kram, skriv dit <i>telefon nummer</i> uden landekoder (<code>+45</code>, <code>0045</code>
-	osv.).
+	Hvis du gerne vil modtage kram, skriv dit <i>telefon nummer</i> nedenfor:
 </p>
 
 <p class="{server_error ? '' : 'hide' } red-text">{server_error}</p>
