@@ -13,8 +13,8 @@
 	}
 
 	li.active {
-		background-color: rgba(210, 30, 30, 0.4);
-		border-bottom: 4px solid rgba(150, 30, 30, 0.7)
+		background-color:rgb(79,61,224);
+		border-bottom: 2px solid white;
 	}
 
 	a {
@@ -26,7 +26,7 @@
 	}
 </style>
 
-<nav>
+<nav class= "indigo darken-3">
 	<div class="nav-wrapper">
 
 		<a href="#" class="brand-logo right black-text">Corona Kram</a>

@@ -20,7 +20,8 @@
 <style>
 	.kram-btn {
 		border-radius: 9px;
-		color: black;
+		color: rgb(79,61,224);
+		background-color: white;
 		text-align: center;
 		text-decoration: none;
 		margin: 5% auto;
