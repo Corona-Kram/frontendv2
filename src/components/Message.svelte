@@ -95,32 +95,74 @@
     .input-field .prefix.active {
         color: #f9f9f9;
     }
+
+    textarea {
+        border: 2px solid rgba(0, 0, 0, 0.4);
+        border-radius: 7px;
+        height: 5rem;
+        padding: 0.7rem;
+    }
+
+    .info {
+        display: inline-block;
+    }
 </style>
 
 
 {#if extended}
-<div class="row">
-    <div class="input-field col s9">
-        <i class="material-icons prefix white-text">phone</i>
-        <input placeholder="Skriv et telefonnummer her" type="number"
-            class="validate white-text" bind:value={receiver}>
+<div class="hide-on-med-and-down">
+    <div class="row left-align">
+        <div class="input-field col s12 m9">
+            <i class="material-icons prefix white-text">phone</i>
+            <input placeholder="Skriv et telefonnummer her" type="number"
+                class="validate white-text" bind:value={receiver}>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s12 m9">
+            <i class="material-icons prefix white-text">mode_edit</i>
+            <input placeholder="Skriv dit navn her" type="text" class="validate white-text"
+                bind:value={name} on:input={verifyMessageName}>
+        </div>
     </div>
 </div>
-<div class="row">
-    <div class="input-field col s9">
-        <i class="material-icons prefix white-text">mode_edit</i>
-        <input placeholder="Skriv dit navn her" type="text" class="validate white-text"
-            bind:value={name} on:input={verifyMessageName}>
-    </div>
+<div class="hide-on-large-only">
+    <div class="row left-align">
+        <div class="row">
+            <div class="input-field col s12">
+                <input placeholder="Skriv et telefonnummer her" type="number"
+                    class="validate white-text" bind:value={receiver}>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input placeholder="Skriv dit navn her" type="text" class="validate white-text"
+                    bind:value={name} on:input={verifyMessageName}>
+            </div>
+        </div>
+        </div>
 </div>
 {/if}
-<div class="row valign-wrapper">
-    <div class="input-field col s9">
+
+<div class="row hide-on-med-and-down left-align valign-wrapper">
+    <div class="input-field col m9">
         <i class="material-icons prefix white-text">mode_edit</i>
         <input placeholder="{messageDefault}" type="text" class="validate white-text" bind:value={message}
             on:input={verifyMessage}>
     </div>
-    <div class="col s3">
+    <div class="col m3">
+        <span class="info">
+        <abbr title="Der er desværre en begrænsning på antallet af tegn vi kan sende gennem SMS">{
+            message.length + name.length } ud af 50 tegn <i class="material-icons">info</i></abbr>
+        </span>
+    </div>
+</div>
+<div class="row hide-on-large-only left-align">
+    <div class="input-field col s12 valign-wrapper ">
+        <textarea placeholder="{messageDefault}" type="text" rows="3" class="validate white-text" bind:value={message}
+            on:input={verifyMessage}></textarea>
+    </div>
+    <div class="col s10 offset-s2">
         <abbr title="Der er desværre en begrænsning på antallet af tegn vi kan sende gennem SMS">{
             message.length + name.length } ud af 50 tegn <i class="material-icons">info</i></abbr>
     </div>
