@@ -194,6 +194,13 @@
         <textarea placeholder="{messageDefault}" type="text" rows="3" class="validate white-text" bind:value={message}
             on:input={verifyMessage}></textarea>
     </div>
+    <div class="valign-wrapper col s12">
+        <div class="col s12">
+            {#each emojis as emoji}
+                <a class="waves-effect waves-light btn emoji col s2 blue darken-2" on:click={addEmoji(emoji)}>{emoji}</a>
+            {/each}
+        </div>
+    </div>
     <div class="col s10 offset-s2">
         <abbr title="Der er desværre en begrænsning på antallet af tegn vi kan sende gennem SMS">{
             message.length + name.length } ud af 50 tegn <i class="material-icons">info</i></abbr>

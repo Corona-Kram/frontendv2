@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 
 	let loading = true;
-	let messages = [[1, 2, 3]];
+	let messages = [];
 	let count = 0;
 
 	async function updateMessages(seconds) {
@@ -12,8 +12,10 @@
 		await fetch("/kram/" + seconds).then((response) => {
 			return response.json();
 		}).then((new_messages) => {
-			messages = new_messages.concat(messages);
-			count += new_messages.length;
+			if (new_messages) {
+				messages = new_messages.concat(messages);
+				count += new_messages.length;
+			}
 		}).catch(() => { })
 	}
 
@@ -24,12 +26,12 @@
 	}
 
 	onMount(() => {
-		updateMessages(100000);
-
-		getCount();
+		updateMessages(100000, true).then(() => {
+			getCount()
+		})
 
 		const interval = setInterval(() => {
-			updateMessages(10)
+			updateMessages(10, false)
 		}, 10000);
 
 		return () => {
@@ -46,7 +48,7 @@
 
 <h1>Kram Live Feed</h1>
 
-<p class="flow-test">{count} kram sendt indtil videre.</p>
+<p class="flow-test">Coronakram.dk har sendt {count} kram indtil videre.</p>
 
 <div class="progress">
 	<div class="{!messages || loading ? 'indeterminate' : 'determinate'}"
