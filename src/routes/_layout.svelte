@@ -16,6 +16,7 @@
 	.line {
 		display: inline-block;
 	}
+
 	.nobreak {
 		display: inline-block;
 	}
@@ -41,3 +42,26 @@
 <main class="container">
 	<slot></slot>
 </main>
+
+
+<footer class="page-footer indigo">
+	<div class="container">
+		<div class="row">
+			<div class="col l4 s12">
+				<h5 class="white-text">Om CoronaKram</h5>
+				<p class="grey-text text-lighten-4">Siden er udarbejdet af privatpersoner og drives frivilligt.</p>
+			</div>
+			<div class="col l8 s12">
+				<h5 class="white-text">Tak til</h5>
+				<ul>
+					<li><a class="text-lighten-3 blue-text" href="https://danielvarab.github.com">Daniel
+							Varab</a> for hans arbejde med siden.</li>
+					<li>Både <a class="text-lighten-3 blue-text" href="https://danielvarab.github.com">Daniel
+							Varab</a> og <a class="text-lighten-3 blue-text" href="https://www.derczynski.com/itu/">Leon
+							Derczynski</a>
+						for deres sprogforskning, der hjælper med at holde tonen ren i de udsendte beskeder.</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</footer>

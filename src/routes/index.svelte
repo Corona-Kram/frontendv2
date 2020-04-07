@@ -36,6 +36,8 @@
 			<div class="card-content white-text">
 				<span class="card-title">Send et kram til en du kender</span>
 				<p>Du kan sende en besked til en udvalgt person.</p>
+				<p><i class="material-icons">warning</i> <i>NB: Beskeden vil kunne ses af andre på <a href="/feed"
+						class="text-lighten-3 blue-text">live feedet</a></i>!</p>
 
 				<Message extended={true}></Message>
 			</div>
