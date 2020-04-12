@@ -4,6 +4,15 @@
 	let loading = true;
 	let messages = [];
 	let count = 0;
+	const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', timeZone: "Europe/Copenhagen" };
+	const formatter = new Intl.DateTimeFormat('da-DK', options)
+
+	function formatTime(time) {
+		// Add two hours to account for server time difference
+		const date = new Date(time).getTime() + 2 * 60 * 60 * 1000
+		const text = formatter.format(date)
+		return text.charAt(0).toUpperCase() + text.slice(1);
+	}
 
 	async function updateMessages(seconds) {
 		loading = true;
@@ -63,7 +72,7 @@
 			<div class="card blue darken-1">
 				<div class="card-content white-text">
 				<span class="card-title">{#if name}{name}{:else}Anonym{/if}</span>
-				<span class="card-description">{new Date(time).toLocaleString()}</span>
+				<span class="card-description">{formatTime(time)}</span>
 				<p>{text}</p>
 				</div>
 			</div>
