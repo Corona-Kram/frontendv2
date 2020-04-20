@@ -35,7 +35,7 @@
 	}
 
 	onMount(() => {
-		updateMessages(100000, true).then(() => {
+		updateMessages(10000000, true).then(() => {
 			getCount()
 		})
 

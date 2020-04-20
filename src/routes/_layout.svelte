@@ -60,6 +60,8 @@
 							Varab</a> og <a class="text-lighten-3 blue-text" href="https://www.derczynski.com/itu/">Leon
 							Derczynski</a>
 						for deres sprogforskning, der hjælper med at holde tonen ren i de udsendte beskeder.</li>
+					<li><a class="text-lighten-3 blue-text" href="https://inmobile.dk">InMobile.dk</a> for brug af deres
+						platform og støtte.</li>
 				</ul>
 			</div>
 		</div>
